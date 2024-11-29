@@ -23,7 +23,6 @@ interface SubnavRequestData {
 }
 
 export default function Home({ userName, roles }: HomeProps) {
-  console.log('??????')
   return (
     <div>
       <div>Hello {userName}!</div>
