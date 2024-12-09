@@ -1,6 +1,8 @@
 import crypto from 'crypto'
 
-//This should match the `appId` configured in your subnavlink
+//This should match the `Shared Secret` that is paired with the`appId` configured in your subnavlink.
+//Go to Kibo Admin -> System -> Customization -> Applications and look in the URL of the application for the 'appId'
+//That same application name in the Kibo Developer Center will have the `Shared Secret`
 const APP_SECRET = process.env.KIBO_SHARED_SECRET || ''
 
 export const verifyHash = (receivedHash: string, receivedDateTime: string, rawContent: string): boolean => {
