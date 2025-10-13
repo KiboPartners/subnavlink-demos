@@ -30,7 +30,7 @@ export function createApp() {
       const indexPath = path.join(__dirname, 'frontend-dist', 'index.html');
 
       if (!fs.existsSync(indexPath)) {
-        return res.status(500).send('Not Found');
+        return res.status(500).send('Error');
       }
 
       let html = fs.readFileSync(indexPath, 'utf8');
