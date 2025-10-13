@@ -1,0 +1,6 @@
+.esbuild/
+node_modules/
+src/frontend-dist/
+todo
+.env
+.serverless/
