@@ -38,13 +38,18 @@ export function createApp() {
       const orderApi = new OrderApi(Configuration.fromEnv())
       const orderId = parseOrderId(body['x-vol-return-url'])
 
-      const orderData = await orderApi.getOrder({orderId})
+      try{
+        const orderData = await orderApi.getOrder({orderId})
+  
+        const injectedScript = `<script>window.__ORDER_DATA__ = ${JSON.stringify(orderData)};</script>`;
+  
+        html = html.replace('</head>', `${injectedScript}</head>`);
+  
+        res.send(html);
 
-      const injectedScript = `<script>window.__ORDER_DATA__ = ${JSON.stringify(orderData)};</script>`;
-
-      html = html.replace('</head>', `${injectedScript}</head>`);
-
-      res.send(html);
+      } catch(e){
+        res.status(400).send("No order selected. Please select an order and try again.")
+      }
 
     } else {
       res.status(403).send('Not Authorized')
